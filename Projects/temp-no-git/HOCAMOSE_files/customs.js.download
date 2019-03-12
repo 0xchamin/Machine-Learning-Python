@@ -1,0 +1,9 @@
+/**
+ * Created by chaminn on 5/28/2018.
+ */
+$(document).on("click", ".package-delete-btn", function () {
+    var packageID = $(this).data('id');
+   // alert(packageID);
+    //$("#delete-link").attr( "href", "/rehab/delete_exercise/"+exId );
+    $("#delete-link-for-sensor-package").attr( "href", packageID );
+})

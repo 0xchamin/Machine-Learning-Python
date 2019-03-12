@@ -1,0 +1,14 @@
+/**
+ * Created by chaminn on 5/24/2018.
+ */
+$(document).ready(function() {
+    $('#timepickerFrom').timepicker();
+    $('#timepickerTo').timepicker();
+
+    $('#startTimeEmergencyFeedback').timepicker({
+        showInputs: false
+    });
+    $('#finishTimeEmergencyFeedback').timepicker({
+        showInputs: false
+    });
+});

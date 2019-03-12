@@ -1,0 +1,201 @@
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+function vegetarianGuidLine() {
+    //    window.print();
+    //Get the HTML of div
+    var divElements = document.getElementById("VegMealflowchart").innerHTML;
+    var Cereals_info = document.getElementById("CerealsBody").innerHTML;
+    var Dairy_info = document.getElementById("DairyBody").innerHTML;
+    var Nuts_info = document.getElementById("NutsBody").innerHTML;
+    var Legumes_info = document.getElementById("LegumesBody").innerHTML;
+    //Get the HTML of whole page
+    var oldPage = document.body.innerHTML;
+
+    //Reset the page's HTML with div's HTML only
+
+    var html = "<html><body><h2><b>Nutritional guidelines</b></h2> <h2 style='text-align: center;'><b>Protein Chart (Suitable for Vegetarians)</b></h2> <div style='width:500px;heigth:1500px; display: block; margin-left: auto; margin-right: auto;'>" + divElements + "</div><br><p style='text-align: justify;'>This Protein Chart displays Incomplete and Complete protein foods. It is a guideline for protein intake that is especially suitable for vegetarians. Examples of Complete Proteins are eggs and dairy products. Meanwhile, plant-based proteins such as nuts and seeds, cereals and grains, and legumes are Incomplete Proteins. Combining Incomplete and Complete protein foods allows us to consume all the necessary amino acids that the body needs. The Protein diagram displays the recommended pairings for our diet (e.g., it is good to eat a combination of dairy products and cereals and grains in our diet).</p></body>"
+            + "<br><div>The table below shows a list of food items that are rich in protein.</div>"
+            + "<div class='table-responsive'><table border='1' style='width: 100%;'><tr><td style='width: 20%; font-weight: bold;'>Type of Protein</td><td style='width: 80%; font-weight: bold;'>Example Foods</td></tr>"
+            + "<tr><td colspan='4' style='font-style: italic; text-align: center; width: 100%;'>Complete Protein</td></tr>"
+            + "<tr><td style='font-weight: bold; width: 20%;' colspan='1'>Dairy Products and Eggs</td><td colspan='3' style='width: 80%;'><table style='width: 100%;'><tr><td style='width: 30%;'>Eggs</td><td style='width: 30%;'>Milk</td><td style='width: 30%;'>Yoghurt</td></tr><tr><td style='width: 30%;'>Cheese</td></tr></table></td></tr>"
+            + "<tr><td colspan='4' style='font-style: italic; text-align: center; width: 100%;'>Incomplete Protein</td></tr>"
+            + "<tr><td style='font-weight: bold; width: 20%;' colspan='1'>Nuts</td><td colspan='3' style='width: 80%;'><table style='width: 100%;'><tr><td style='width: 30%;'>Almonds</td><td style='width: 30%;'>Walnuts</td><td style='width: 30%;'>Cashews</td></tr><tr><td style='width: 30%;'>Pistachios</td><td style='width: 30%;'>Hazelnuts</td><td style='width: 30%;'>Brazil Nuts</td></tr><tr><td style='width: 30%;'>Pecans</td><td style='width: 30%;'>Macademia Nuts</td><td style='width: 30%;'>Peanuts</td></tr><tr><td style='width: 30%;'>Chestnuts</td><td style='width: 30%;'>Pine Nuts</td></tr></table></td></tr>"
+            + "<tr><td style='font-weight: bold; width: 20%;' colspan='1'>Seeds</td><td colspan='3' style='width: 80%;'><table style='width: 100%;'><tr><td style='width: 30%;'>Sesame Seeds</td><td style='width: 30%;'>Pumpkin Seeds</td><td style='width: 30%;'>Chia Seeds</td></tr><tr><td style='width: 30%;'>Sunflower Seeds</td><td style='width: 30%;'>Poppy Seeds</td></tr></table></td></tr>"
+            + "<tr><td style='font-weight: bold; width: 20%;' colspan='1'>Cereal and Grains</td><td colspan='3' style='width: 80%;'><table style='width: 100%;'><tr><td style='width: 30%;'>Bread (Wholemeal)</td><td style='width: 30%;'>Pasta (Wholemeal)</td><td style='width: 30%;'>Noodles (Wholemeal)</td></tr><tr><td style='width: 30%;'>Rice</td><td style='width: 30%;'>Barley</td><td style='width: 30%;'>Oatmeal</td></tr></table></td></tr>"
+            + "<tr><td style='font-weight: bold; width: 20%;' colspan='1'>Legumes</td><td colspan='3' style='width: 80%;'><table style='width: 100%;'><tr><td style='width: 30%;'>Chickpeas</td><td style='width: 30%;'>Lentils</td><td style='width: 30%;'>Black Beans</td></tr><tr><td style='width: 30%;'>Soybeans</td><td style='width: 30%;'>Red Kidney Beans</td><td style='width: 30%;'>Edamame Beans</td></tr></table></td></tr>"
+            + "</table></div>";
+
+    html += "<br><br><div>Resources and information extracted from United States Department of Agriculture (http://usda.gov)</div>";
+
+    document.body.innerHTML = html;
+    //Print Page
+    window.print();
+
+    //Restore orignal HTML
+    document.body.innerHTML = oldPage;
+
+
+}
+function generalGuidLine() {
+    //    window.print();
+    //Get the HTML of div
+    var divElements = document.getElementById("imgPyramid").innerHTML;
+
+    //Get the HTML of whole page
+    var oldPage = document.body.innerHTML;
+
+    var html = "<html><body><h2><b>Nutritional guidelines</b></h2> <h2 style='text-align: center;'><b>Healthy Food Pyramid</b></h2><div style='width:500px;heigth:1500px; display: block; margin-left: auto; margin-right: auto;'>" + divElements + "</div>"
+            + "<div><p  style='text-align: justify;'>The Food Pyramid shows a guideline of what we should eat in a day. It suggests us to eat a variety of foods to get the all the necessary nutrients our body needs and at the same time, it recommends the right amount of servings of foods we should consume in order to maintain or improve our weight.</p></div>"
+            + "<div class='table-responsive'><table border='1'><thead><tr><th>Food groups</th><th>Description</th><th>Examples of one serving</th></tr></thead><tbody>"
+            + "<tr><td style='width: 25%;'>Carbohydrates</td><td>They provide complex carbohydrates, which are an important source of energy. They also provide vitamins, minerals, and fiber</td><td><ul style='list-style-position: inside;'><li>1 slice of bread</li><li>½ cup of cereal, rice, or pasta</li></ul></td></tr>"
+            + "<tr><td style='width: 25%;'>Vegetables</td><td>They provide dietary fiber, folate, vitamins, and minerals. They are naturally low in fat and calories</td><td><ul style='list-style-position: inside;'><li>1 cup of leafy vegetables</li><li>½ cup of cooked or chopped raw vegetables</li><li>¾ cup of vegetable juice</li></ul></td></tr>"
+            + "<tr><td style='width: 25%;'>Fruits</td><td>They provide dietary fiber, vitamins, and minerals. They are low in fat and sodium</td><td><ul style='list-style-position: inside;'><li>1 medium apple, banana, or orange</li><li>½ cup chopped, or canned fruit</li><li>¾ cup fruit juice</li></ul></td></tr>"
+            + "<tr><td style='width: 25%;'>Calcium-rich foods</td><td>They provide protein, vitamins, and minerals. They help our body build and maintain strong bones</td><td><ul style='list-style-position: inside;'><li>1 cup of milk or yogurt</li><li>28g of low-fat cheese</li></ul></td></tr>"
+            + "<tr><td style='width: 25%;'>Protein</td><td>They are needed for our bodies to build and repair tissues. They are important building block of bones, muscles, skin, and blood</td><td><ul style='list-style-position: inside;'><li>80 g of cooked lean meat</li><li>1 egg</li><li>¼ cup of nuts</li></ul></td></tr>"
+            + "<tr><td style='width: 25%;'>Fats, Oils, Sweets, and Salts</td><td>These foods provide calories and little else nutritionally. Eat these foods sparingly</td><td><ul style='list-style-position: inside;'><li>Soft drinks, candies, butter</li></ul></td></tr></tbody></table></div></body>";
+    //Reset the page's HTML with div's HTML only
+    html += "<br><div>Resources and information extracted from United States Department of Agriculture (http://usda.gov)</div>";
+    document.body.innerHTML = html;
+
+    //Print Page
+    window.print();
+
+    //Restore orignal HTML
+    document.body.innerHTML = oldPage;
+
+
+}
+
+function QRCode_Print() {
+    //    window.print();
+    //Get the HTML of div
+    var divElements = document.getElementById("printQR").innerHTML;
+
+    //Get the HTML of whole page
+    var oldPage = document.body.innerHTML;
+
+    //Reset the page's HTML with div's HTML only
+    document.body.innerHTML =
+            "<html><body><br/><br/><br/><div>" + divElements + "</div></body>";
+
+
+    //Print Page
+    window.print();
+
+    //Restore orignal HTML
+    document.body.innerHTML = oldPage;
+    document.location.reload();
+
+}
+
+function autocomplete(inp, arr) {
+  /*the autocomplete function takes two arguments,
+  the text field element and an array of possible autocompleted values:*/
+  var currentFocus;
+  /*execute a function when someone writes in the text field:*/
+  inp.addEventListener("input", function(e) {
+      var a, b, i, val = this.value;
+      /*close any already open lists of autocompleted values*/
+      closeAllLists();
+      if (!val) { return false;}
+      currentFocus = -1;
+      /*create a DIV element that will contain the items (values):*/
+      a = document.createElement("DIV");
+      a.setAttribute("id", this.id + "autocomplete-list");
+      a.setAttribute("class", "autocomplete-items");
+      /*append the DIV element as a child of the autocomplete container:*/
+      this.parentNode.appendChild(a);
+      /*for each item in the array...*/
+      for (i = 0; i < arr.length; i++) {
+        /*check if the item starts with the same letters as the text field value:*/
+        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+          /*create a DIV element for each matching element:*/
+          b = document.createElement("DIV");
+          /*make the matching letters bold:*/
+          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+          b.innerHTML += arr[i].substr(val.length);
+          /*insert a input field that will hold the current array item's value:*/
+          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+          /*execute a function when someone clicks on the item value (DIV element):*/
+          b.addEventListener("click", function(e) {
+              /*insert the value for the autocomplete text field:*/
+              inp.value = this.getElementsByTagName("input")[0].value;
+              /*close the list of autocompleted values,
+              (or any other open lists of autocompleted values:*/
+              closeAllLists();
+          });
+          a.appendChild(b);
+        }
+      }
+  });
+  /*execute a function presses a key on the keyboard:*/
+  inp.addEventListener("keydown", function(e) {
+      var x = document.getElementById(this.id + "autocomplete-list");
+      if (x) x = x.getElementsByTagName("div");
+      if (e.keyCode == 40) {
+        /*If the arrow DOWN key is pressed,
+        increase the currentFocus variable:*/
+        currentFocus++;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 38) { //up
+        /*If the arrow UP key is pressed,
+        decrease the currentFocus variable:*/
+        currentFocus--;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 13) {
+        /*If the ENTER key is pressed, prevent the form from being submitted,*/
+        e.preventDefault();
+        if (currentFocus > -1) {
+          /*and simulate a click on the "active" item:*/
+          if (x) x[currentFocus].click();
+        }
+      }
+  });
+  function addActive(x) {
+    /*a function to classify an item as "active":*/
+    if (!x) return false;
+    /*start by removing the "active" class on all items:*/
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    /*add class "autocomplete-active":*/
+    x[currentFocus].classList.add("autocomplete-active");
+  }
+  function removeActive(x) {
+    /*a function to remove the "active" class from all autocomplete items:*/
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+  function closeAllLists(elmnt) {
+    /*close all autocomplete lists in the document,
+    except the one passed as an argument:*/
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != inp) {
+        x[i].parentNode.removeChild(x[i]);
+      }
+    }
+  }
+  /*execute a function when someone clicks in the document:*/
+  document.addEventListener("click", function (e) {
+      closeAllLists(e.target);
+  });
+}
+if (typeof RecipeArray !== 'undefined' ){
+var Recipe = [];
+    for(var i = 0;i < RecipeArray.length; i++){
+        if(Recipe.indexOf(RecipeArray[i]) == -1){
+            Recipe.push(RecipeArray[i])
+        }
+    }
+    autocomplete(document.getElementById("recipe_name"), Recipe);
+    }
+
+

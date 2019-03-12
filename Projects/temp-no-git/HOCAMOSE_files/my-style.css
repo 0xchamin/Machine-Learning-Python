@@ -1,0 +1,468 @@
+body{
+	color:black;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:13px;
+}
+
+.orange {
+	color: #FF8655 !important;
+
+}
+.cursorPointer{
+	cursor: pointer;
+}
+.green {
+	color: #22baa0;
+}
+.black{
+	color:black;
+}
+.tasktabs{
+  height:800px;
+  overflow: auto;
+}
+.pop-up-side-heading-color{
+
+	color: #FF6A2F;
+}
+.dragDropImg{
+	width:200px;
+	height:200px;
+}
+.MedicationEC_Report_table{
+	Margin-left:11em
+}
+.MedicationEC_Report_table_legend{
+	margin-top:30px;
+}
+.RehabConfig{
+	border:1px solid #ccc;
+	padding: 0px 10px 0px 10px;
+}
+.dropimg{
+	width:200px;
+	height:200px;
+	border:2px dashed #ccc;
+	color: #ccc;
+	line-height:200px;
+	text-align:center;
+}
+
+.dropimg.dropimgOver{
+	border-color:#000;
+	color:#000;
+}
+.imageUpload{
+		width:200px;
+	height:auto;
+}
+.imageEnlarge{
+	width:50px;
+	height:auto;
+}
+.imageEnlarge:hover{
+	transform: scale(5);
+        background: white;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+.informationBox{
+	color: #FF8655;
+	float:right;
+	font-size:25px;
+}
+.floatLeft{
+	float:left;
+}
+.font13{font-size:13px;}
+
+.floatRight{
+	float:right;
+}
+.zeroMarginPadding{
+	margin-left:0px;
+	padding-left:0px;
+}
+.borderNone{
+	border:0px;
+}
+.floatCenter{
+	float:center;
+}
+.mealStatus{
+    background-color: #FFA581;
+    padding:10px;
+    text-align:center;
+}
+.pop-up-paragraph{
+	color: #CB3A00;
+
+}
+.textalignCenter{
+	 text-align: center;
+}
+.Icon_size_16{
+	font-size:16px;
+}
+.table_width_cellspacing{
+
+	width: 100%;
+  cellspacing: 0;
+}
+.label.label-info {
+    background: #ff8c54;
+}
+.accordion-menu>li{
+	border-bottom:solid 3px #35425c;
+}
+
+.top-menu .navbar-nav > li {
+    height: 60px;
+		font-size: 15px;
+}
+
+.top-menu .navbar-nav > li > a{
+	padding: 20px 10px;
+  vertical-align: middle;
+}
+
+.top-menu .navbar-nav .lang-active > a{
+	color: #FF8655;
+}
+
+.top-menu .navbar-nav > li > a > img{
+	vertical-align: middle;
+}
+
+.top-menu .navbar-nav > li > a > i{
+	vertical-align: middle;
+}
+
+.top-menu .navbar-nav > li > a > .user-name {
+    display: block;
+		padding: 0px;
+}
+
+.top-menu .navbar-nav > li > a > .user-name > i {
+    margin-left: 2px;
+}
+
+.feedback-button{
+	width:20%;
+	float:left;
+	text-align:center;
+	padding:20px 10px;
+}
+
+.feedback-button .img-feedback{
+	width:80%;
+	height:auto;
+}
+
+.feedback-button > input{ /* HIDE RADIO */
+  visibility: hidden; /* Makes input not-clickable */
+  position: absolute; /* Remove input from document flow */
+}
+
+.feedback-button > input + img{ /* IMAGE STYLES */
+  cursor:pointer;
+  border:2px solid transparent;
+}
+.feedback-button > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
+  border:7px solid red;
+}
+
+textarea.note-codable {
+	display: none;
+}
+
+.select2-dropdown--above{
+  display: flex; flex-direction: column;
+}
+.select2-dropdown--above .select2-search--dropdown{
+  order: 2;
+}
+.select2-dropdown--above .select2-results {
+order: 1;
+}
+
+.select2-dropdown--below{
+  display: flex; flex-direction: column;
+}
+.select2-dropdown--below .select2-search--dropdown{
+  order: 1;
+}
+.select2-dropdown--below .select2-results {
+order: 2;
+}
+
+.select2-container--default .select2-results > .select2-results__options {
+ max-height: 150px;
+}
+
+
+
+/*table*/
+#example{
+	width: 100%;
+	font-size:13;
+	cellspacing: 0;
+}
+/*table end*/
+#compulsory{
+	color:red;
+	font-size:20px;
+}
+/*chart styling starts*/
+#chartdiv,
+#columnAndLineMix,
+#RehabServiceReport,
+#GHC_ServiceReport,
+#MealServiceReport,
+#MedicationServiceReport,
+#EmergencyServiceReport,
+#MedicationECR,
+#EmergencyECR,
+#EmergencyECR_Sound,
+#RehabECR1,
+#RehabECR2,
+#GCH_ECR,#GCH_ECR2,#GCH_ECR3,#MealPlanningECR{
+    width: 100%;
+	height: 500px;
+	font-size: 11px;
+}
+/*chart styling ends*/
+
+
+.dashboard_table>tbody>tr>td {
+    padding: 10px!important;
+}
+
+.dashboard_table>tbody>tr>th {
+    padding: 10px!important;
+}
+.pop_up_first_td{
+	color: #FF6A2F;
+}
+.marginBottom3px{
+margin-bottom:3px;}
+.top-menu .navbar-nav>li>a:hover {
+	background-color:#00B092;
+}
+.tab_title>li>a{
+	color: #FF6A2F;
+}
+.borderless td, .borderless>tbody>tr>td, .borderless>tbody>tr>th, .borderless>tfoot>tr>td, .borderless>tfoot>tr>th, .borderless>thead>tr>td, .borderless>thead>tr>th {
+    padding: 8px!important;
+}
+.borderless td, .borderless th, .borderless tr {
+    border: none;
+
+}
+.borderless>tbody>tr>td{
+	border-top: 0px solid #ddd;
+	font-size:14px;
+}
+.btn{
+	font-size:14px;
+}
+#example3{
+	font-size: 13px;
+}
+#btnSize{
+	height:19px;
+	width:60px;
+	display: inline-block;
+	font-weight: bold;
+}
+.page-title {
+    padding: 20px;
+    background: #fff;
+    border-bottom: 1px solid #22baa0;
+}
+
+h1 {
+    color: #00806B;
+    padding: 0;
+    margin: 0 0 4px;
+}
+.page-breadcrumb ol.breadcrumb li a, .page-breadcrumb ol.breadcrumb li.active, .page-breadcrumb ul li a {
+    font-size: 14px;
+    color: #00806B;
+}
+.navbar-inner {
+    background: #22baa0;
+}
+.modal-header {
+
+    height: 70px;
+
+}
+.panel .panel-heading {
+    padding: 20px;
+    overflow: hidden;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border: 0!important;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.report-number{
+	text-align: center;
+}
+
+.small-sidebar:not(.page-sidebar-fixed) .accordion-menu>li>a {
+    padding: 15px 25px;
+    text-align: center;
+    position: relative;
+    width: 0px;
+}
+.small-sidebar:not(.page-sidebar-fixed) .accordion-menu>li>a>p {
+	display:none;
+}
+.menu.accordion-menu > li.active > a, .menu.accordion-menu > li.active.open > a {
+    background: #2b384e;
+    color: #1fffd9;
+}
+.top-menu .navbar-nav>li>a {
+
+    color: #000000;
+
+}
+.navbar-inner{
+	background: #22baa0;
+}
+.top-menu .navbar-nav>li>a>i {
+    font-size: 17px;
+}
+.modal-body {
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+}
+
+.badge.badge-success {
+    background: #FF8655;
+    color: #000;
+	font-weight: bold;
+	font-size: 40px;
+}
+.topmenu-outer {
+
+    background: #22baa0;
+
+    box-shadow: 0px 5px 5px #888888;
+	font-size: 16px;
+}
+/* inner icon for text box start */
+.inner-addon {
+  position: relative;
+}
+
+/* style glyph */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+
+}
+.inner-addon .glyphicon:hover {
+font-size: 15px;
+}
+/* align glyph */
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
+/* inner icon for text box start end */
+
+.flashing{
+
+	animation-name: flash;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+
+	/* Chrome 4+, Safari 4+, Opera 15+ */
+	-webkit-animation-name: flash;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-iteration-count: infinite;
+
+	/* Firefox 5+ */
+	-moz-animation-name: flash;
+	-moz-animation-duration: 1s;
+	-moz-animation-timing-function: linear;
+	-moz-animation-iteration-count: infinite
+}
+/*model popup btn*/
+
+.Save_btn {
+    color: #fff;
+    background-color: #22baa0;
+    border-color: transparent;
+}
+.Close_btn{
+    color: #fff;
+    background-color: #22baa0;
+    border-color: transparent;
+}
+
+/* Picture Canvas Style */
+
+.healthCheckPicCanvas {
+	width: 320px;
+	height: 240px;
+	padding:10px; 
+	border:2px solid #330000; 
+	background-color:#2b384e; 
+	border-radius:10px;
+}
+
+/*model popup btn end*/
+@keyframes flash {
+	0% { opacity: 1.0 }
+	50% { opacity: 0.5 }
+	100% { opacity: 1.0 }
+}
+
+/* Chrome 4+, Safari 4+, Opera 15+ */
+@-webkit-keyframes flash {
+	0% { opacity: 1.0 }
+	50% { opacity: 0.5 }
+	100% { opacity: 1.0 }
+}
+
+/* Firefox 5+ */
+@-moz-keyframes flash {
+	0% { opacity: 1.0 }
+	50% { opacity: 0.5 }
+	100% { opacity: 1.0 }
+}
+/*media query
+	@media (max-width: 767px){
+	.navbar .logo-box {
+    background: #fff;
+	}
+	.navbar .logo-box a {
+	background: #fff;
+	}
+}*/
+@media screen and (max-width: 990px) {
+	#example3{
+		font-size: 12px;
+	}
+    #TableHeaderLarge{
+        display:none;
+
+	}
+}
+@media screen and (min-width: 991px) {
+    #TableHeadersmall{
+        display:none;
+	}
+}
+
+footer {
+	margin-top: 50px;
+}

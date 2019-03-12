@@ -1,0 +1,54 @@
+/**
+ * Created by bjayamanna on 11/29/2017.
+ */
+function submitPlan() {
+
+    var ExerciseIds = [];
+    var ConfigTypes = [];
+    var jsonData = [];
+
+    $("#transfer .exIds").each(function (index) {
+        ExerciseIds.push($(this).val());
+    });
+
+    $("#transfer .configIds").each(function (index) {
+        ConfigTypes.push($(this).val());
+    });
+
+    $("#transfer div[class^='configsof']").each(function (index) {
+
+        var jsonObj = {};
+        var values = [];
+
+        jsonObj.exerciseId = $(this).attr('class').split(" ")[0].split("_")[1];
+
+        $(this).children().each(function (index) {
+            values.push($(this).val());
+        });
+
+        jsonObj.configId = values[0];
+        jsonObj.value = values[1];
+        values = [];
+
+        jsonData.push(jsonObj);
+
+    });
+
+    var jsonDataInput = $("<input>")
+            .attr("type", "hidden")
+            .attr("name", "jsonData").val(JSON.stringify(jsonData));
+
+    var exerciseIdsInput = $("<input>")
+            .attr("type", "hidden")
+            .attr("name", "exerciseIds").val(JSON.stringify(ExerciseIds));
+
+    $('#exercise_plan_form').append($(jsonDataInput));
+    $('#exercise_plan_form').append($(exerciseIdsInput));
+
+    $('#exercise_plan_form').submit();
+
+    console.log(jsonData);
+}
+
+
+

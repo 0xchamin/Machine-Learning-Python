@@ -1,0 +1,373 @@
+$(document).ready(function () {
+    $('#HocamoseTableStack1').DataTable();
+    $('#HocamoseTableStack2').DataTable();
+    //fitness game custom filter datatable
+
+    $('#HocamoseTableStack3').DataTable({stateSave: true, responsive: true});
+    $('#HocamoseTableStack4').DataTable({stateSave: true, responsive: true});
+  
+
+//********** Fitness Games Custom Filters properties start ********//
+{
+    let table = $('#HocamoseTableStack3').DataTable();
+    //filter date
+
+    //filter current, past and upcomming session
+    table.columns(6).visible(0);
+
+    var state = table.state.loaded();
+    if (state) {
+
+        var colSearch = state.columns[6].search;
+
+        if (colSearch.search) {
+            $('#searchInput').val(colSearch.search);
+        }
+
+        table.draw();
+    }
+    $('#searchInput').on('keyup change', function () {
+        if (table.columns(6).search() !== this.value) {
+            table.columns(6)
+                    .search(this.value)
+                    .draw();
+
+        }
+    });
+
+    //filter date
+    table.columns(7).visible(0);
+
+    var state = table.state.loaded();
+    if (state) {
+
+        var colSearch = state.columns[7].search;
+
+        if (colSearch.search) {
+            $('#FitnessSessionDate').val(colSearch.search);
+        }
+
+        table.draw();
+    }
+    $('#FitnessSessionDate').on('keyup change', function () {
+        if (table.columns(7).search() !== this.value) {
+            table.columns(7)
+                    .search(this.value)
+                    .draw();
+
+        }
+    });
+    
+    $('#FitnessGameClearIcon').on('click', function () {
+
+        table.columns(7).search("").draw();
+
+    });
+}
+    //********** Fitness Games Custom Filters ends here ********//
+
+    //**********Meal Planning Custom Filters properties start ********//
+    var mealplanning_appointment_tbl = $('#HocamoseTableStack4').DataTable();
+    //filter date
+
+    //filter current, past and upcomming session
+    mealplanning_appointment_tbl.columns(6).visible(0);
+
+    var state = mealplanning_appointment_tbl.state.loaded();
+    if (state) {
+
+        var colSearch = state.columns[6].search;
+
+        if (colSearch.search) {
+            $('#searchInputMealPlanning').val(colSearch.search);
+        }
+
+        mealplanning_appointment_tbl.draw();
+    }
+    $('#searchInputMealPlanning').on('keyup change', function () {
+        if (mealplanning_appointment_tbl.columns(6).search() !== this.value) {
+            mealplanning_appointment_tbl.columns(6)
+                    .search(this.value)
+                    .draw();
+
+        }
+    });
+
+    //filter date
+    mealplanning_appointment_tbl.columns(7).visible(0);
+
+    var state = mealplanning_appointment_tbl.state.loaded();
+    if (state) {
+
+        var colSearch = state.columns[7].search;
+
+        if (colSearch.search) {
+            $('#MealplanningSessionDate').val(colSearch.search);
+        }
+
+        mealplanning_appointment_tbl.draw();
+    }
+    $('#MealplanningSessionDate').on('keyup change', function () {
+        if (mealplanning_appointment_tbl.columns(7).search() !== this.value) {
+            mealplanning_appointment_tbl.columns(7)
+                    .search(this.value)
+                    .draw();
+
+        }
+    });
+    
+    $('#MealplanningClearIcon').on('click', function () {
+
+        mealplanning_appointment_tbl.columns(7).search("").draw();
+
+    });
+
+    //********** Meal planning Custom Filters ends here ********//
+  //************* S2 planning start, grouping table  ********* //
+      var groupColumn = 0;
+    var table = $('#hocamoseS2GroupingTable').DataTable({
+        "columnDefs": [
+            { "visible": false,
+                "targets": groupColumn,
+                
+            }
+        ],
+        "order": [[ groupColumn, 'asc' ]],
+        "displayLength": 25,
+        "drawCallback": function ( settings ) {
+            var api = this.api();
+            var rows = api.rows( {page:'current'} ).nodes();
+            var last=null;
+ 
+            api.column(groupColumn, {page:'current'} ).data().each( function ( group, i ) {
+                if ( last !== group ) {
+                    $(rows).eq( i ).before(
+                        '<tr class="group"><td colspan="7">'+group+'</td></tr>'
+                    );
+ 
+                    last = group;
+                }
+            } );
+        }
+    } );
+ 
+    // Order by the grouping
+    $('#hocamoseS2GroupingTable tbody').on( 'click', 'tr.group', function () {
+        var currentOrder = table.order()[0];
+        if ( currentOrder[0] === groupColumn && currentOrder[1] === 'asc' ) {
+            table.order( [ groupColumn, 'desc' ] ).draw();
+        }
+        else {
+            table.order( [ groupColumn, 'asc' ] ).draw();
+        }
+    } );
+    
+    
+  //********** s2 planning ends , grouping table*************************//
+});
+
+//    //ajax mocks
+//    $.mockjaxSettings.responseTime = 500;
+//
+//    $.mockjax({
+//        url: '/post',
+//        response: function(settings) {
+//            log(settings, this);
+//        }
+//    });
+//
+//    $.mockjax({
+//        url: '/error',
+//        status: 400,
+//        statusText: 'Bad Request',
+//        response: function(settings) {
+//            this.responseText = 'Please input correct value';
+//            log(settings, this);
+//        }
+//    });
+//
+//    $.mockjax({
+//        url: '/status',
+//        status: 500,
+//        response: function(settings) {
+//            this.responseText = 'Internal Server Error';
+//            log(settings, this);
+//        }
+//    });
+//
+//    $.mockjax({
+//        url: '/groups',
+//        response: function(settings) {
+//            this.responseText = [
+//             {value: 0, text: 'Guest'},
+//             {value: 1, text: 'Service'},
+//             {value: 2, text: 'Customer'},
+//             {value: 3, text: 'Operator'},
+//             {value: 4, text: 'Support'},
+//             {value: 5, text: 'Admin'}
+//           ];
+//           log(settings, this);
+//        }
+//    });
+//
+//    function log(settings, response) {
+//            var s = [], str;
+//            s.push(settings.type.toUpperCase() + ' url = "' + settings.url + '"');
+//            for(var a in settings.data) {
+//                if(settings.data[a] && typeof settings.data[a] === 'object') {
+//                    str = [];
+//                    for(var j in settings.data[a]) {str.push(j+': "'+settings.data[a][j]+'"');}
+//                    str = '{ '+str.join(', ')+' }';
+//                } else {
+//                    str = '"'+settings.data[a]+'"';
+//                }
+//                s.push(a + ' = ' + str);
+//            }
+//            s.push('RESPONSE: status = ' + response.status);
+//
+//            if(response.responseText) {
+//                if($.isArray(response.responseText)) {
+//                    s.push('[');
+//                    $.each(response.responseText, function(i, v){
+//                       s.push('{value: ' + v.value+', text: "'+v.text+'"}');
+//                    });
+//                    s.push(']');
+//                } else {
+//                   s.push($.trim(response.responseText));
+//                }
+//            }
+//            s.push('--------------------------------------\n');
+//            $('#console').val(s.join('\n') + $('#console').val());
+//    }
+//
+//    //turn to inline mode
+//    $.fn.editable.defaults.mode = 'inline';
+//
+//    //editables
+//    $('#example-editable td a').editable({
+//           url: '/post',
+//           type: 'text',
+//           pk: 1,
+//           name: 'username',
+//           title: 'Enter username'
+//    });
+//
+//    // Datatables
+//
+//    $('#example').dataTable();
+//    $('#example-editable').DataTable();
+//
+//    var table = $('#example2').DataTable({
+//        "columnDefs": [
+//            { "visible": false, "targets": 2 }
+//        ],
+//        "order": [[ 2, 'asc' ]],
+//        "displayLength": 25,
+//        "drawCallback": function ( settings ) {
+//            var api = this.api();
+//            var rows = api.rows( {page:'current'} ).nodes();
+//            var last=null;
+//
+//            api.column(2, {page:'current'} ).data().each( function ( group, i ) {
+//                if ( last !== group ) {
+//                    $(rows).eq( i ).before(
+//                        '<tr class="group"><td colspan="5">'+group+'</td></tr>'
+//                    );
+//
+//                    last = group;
+//                }
+//            } );
+//        }
+//    } );
+//
+//    // Order by the grouping
+//    $('#example2 tbody').on( 'click', 'tr.group', function () {
+//        var currentOrder = table.order()[0];
+//        if ( currentOrder[0] === 2 && currentOrder[1] === 'asc' ) {
+//            table.order( [ 2, 'desc' ] ).draw();
+//        }
+//        else {
+//            table.order( [ 2, 'asc' ] ).draw();
+//        }
+//    } );
+//
+//    $.fn.isValid = function(){
+//        return this[0].checkValidity()
+//    }
+//
+//    var t = $('#example3').DataTable();
+//
+//    $('#add-row').on( 'click', function () {
+//        if($("#add-row-form").isValid()) {
+//            var name = $('#name-input').val(),
+//                position = $('#position-input').val(),
+//                age = $('#age-input').val(),
+//                date = $('#date-input').val(),
+//                salary = $('#salary-input').val();
+//            t.row.add( [
+//                name,
+//                position,
+//                age,
+//                date,
+//                '$' + salary
+//            ] ).draw();
+//
+//            $('.modal').modal('hide');
+//
+//            return false;
+//        }
+//    });
+//
+//    // var ex_t = $('#example-regimen').DataTable();
+//
+//    // $('#add-row').on( 'click', function () {
+//    //     if($("#add-row-form").isValid()) {
+//    //         var name = $('#name-input').val(),
+//    //             position = $('#position-input').val(),
+//    //             age = $('#age-input').val(),
+//    //             date = $('#date-input').val();
+//    //         ex_t.row.add( [
+//    //             name,
+//    //             position,
+//    //             age,
+//    //             date
+//    //         ] ).draw();
+//
+//    //         $('.modal').modal('hide');
+//
+//    //         return false;
+//    //     }
+//    // });
+//
+//
+//    $('.date-picker').datepicker({
+//        orientation: "top auto",
+//        language: "en-GB",
+//        autoclose: true
+//    });
+//
+//    $('#example').dataTable({
+//        "lengthMenu": [ 5 ],
+//        "bLengthChange" : false,
+//    });
+//
+//    $('#analytics-example').dataTable({
+//        "lengthMenu": [ 5 ],
+//        "bLengthChange" : false,
+//    });
+//
+//    // $('#view-exercise-table').dataTable();
+//
+//    $("#view-exercise-table").dataTable( {
+//        dom : 'l<"#action">frtip'
+//    } );
+//
+//    $('<label/>').text('Actions ').appendTo('#action')
+//    $select = $('<select/>').appendTo('#action')
+//    $('<option/>').val('1').text('Delete').appendTo($select);
+//
+//    $('<button class="btn btn-default apply-btn"></button>').text('Apply').appendTo('#action')
+//
+//
+//
+//});

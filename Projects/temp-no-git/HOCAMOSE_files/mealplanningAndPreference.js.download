@@ -1,0 +1,455 @@
+//        window.onload = food_List_view();
+
+window.onload = function () {
+    var mealviewdata = sessionStorage.getItem('clicked');
+
+    if (mealviewdata === 'true') {
+        food_cart_view();
+    }
+
+
+
+};
+//from prev end
+var header = document.getElementById("mystickydiv");
+
+if((header !== null)){
+var sticky = header.offsetTop;
+
+
+window.onscroll = function () {
+    stickydivFunction();
+};
+
+}
+
+function stickydivFunction() {
+    if (window.pageYOffset > sticky) {
+        header.classList.add("sticky");
+    } else {
+        header.classList.remove("sticky");
+    }
+}
+
+function food_cart_view() {
+    document.getElementById("food_List").style.display = "none"
+    document.getElementById("btn_food_cart").style.display = "none";
+    document.getElementById("SearchFood").style.visibility = "hidden";
+    document.getElementById("filterOptionBtn").style.visibility = "hidden";
+    document.getElementById("food_cart").style.display = "";
+    document.getElementById("btn_food_List").style.display = "";
+    document.getElementById("btn_plan_print").style.display = "";
+    document.getElementById("pyramid").scrollIntoView();
+    sessionStorage.setItem('clicked', true);
+
+}
+function food_List_view() {
+    document.getElementById("food_List").style.display = ""
+    document.getElementById("btn_food_cart").style.display = "";
+    document.getElementById("SearchFood").style.visibility = "visible";
+    document.getElementById("filterOptionBtn").style.visibility = "visible";
+    document.getElementById("food_cart").style.display = "none";
+    document.getElementById("btn_food_List").style.display = "none";
+    document.getElementById("btn_plan_print").style.display = "none";
+    sessionStorage.removeItem('clicked');
+}
+
+
+function Function_Search_Food() {
+    var input, filter, food_card_columns, figcaption, a, i, one_food_card;
+    input = document.getElementById("SearchFood");
+    filter = input.value.toUpperCase();
+    food_card_columns = document.getElementById("food_card_columns");
+    one_food_card = food_card_columns.getElementsByTagName("a");
+    figcaption = food_card_columns.getElementsByTagName("figcaption");
+    for (i = 0; i < figcaption.length; i++) {
+        a = figcaption[i].getElementsByTagName("h4")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            one_food_card[i].style.display = "";
+        } else {
+            one_food_card[i].style.display = "none";
+        }
+    }
+}
+
+function Function_pyramid_type(input) {
+    var food_card_columns, i, one_food_card, foodTag;
+    food_card_columns = document.getElementById("food_card_columns");
+    one_food_card = food_card_columns.getElementsByTagName("a");
+
+    for (i = 0; i < one_food_card.length; i++) {
+        foodTag = document.getElementById(input + i);
+        if (foodTag) {
+            one_food_card[i].style.display = "";
+        } else {
+            one_food_card[i].style.display = "none";
+        }
+    }
+}
+
+function Function_clear_filter() {
+    var input, filter, food_card_columns, i, one_food_card, foodTag;
+    input = document.getElementById("SearchFood");
+    filter = input.value.toUpperCase();
+    food_card_columns = document.getElementById("food_card_columns");
+    one_food_card = food_card_columns.getElementsByTagName("a");
+
+    for (i = 0; i < one_food_card.length; i++) {
+        one_food_card[i].style.display = "";
+    }
+}
+
+
+function Function_Halal_filter() {
+    var food_card_columns, i, one_food_card, foodTag, halal_filter;
+    food_card_columns = document.getElementById("food_card_columns");
+    one_food_card = food_card_columns.getElementsByTagName("a");
+
+    for (i = 0; i < one_food_card.length; i++) {
+        foodTag = document.getElementById("Halal_Type" + i);
+        halal_filter = foodTag.innerHTML;
+        console.log(halal_filter);
+        if (halal_filter == "HALAL") {
+            one_food_card[i].style.display = "";
+        } else {
+            one_food_card[i].style.display = "none";
+        }
+    }
+}
+
+function Function_Meal_type_filter(input) {
+    var food_card_columns, i, one_food_card, Meal_type_filter;
+    food_card_columns = document.getElementById("food_card_columns");
+    one_food_card = food_card_columns.getElementsByTagName("a");
+
+    for (i = 0; i < one_food_card.length; i++) {
+        Meal_type_filter = document.getElementById("meal_type_filter" + i).getAttribute("value");
+
+
+        if (Meal_type_filter == input) {
+            one_food_card[i].style.display = "";
+        } else {
+            one_food_card[i].style.display = "none";
+        }
+    }
+}
+
+function Function_Food_Provider_filter(){
+    var foodmenu_aTag= document.getElementsByClassName("food_menu_a_tag");
+    food_card_columns = document.getElementById("food_card_columns");
+    one_food_card = food_card_columns.getElementsByTagName("a");
+    for (i = foodmenu_aTag.length; i < one_food_card.length; i++) {
+      one_food_card[i].style.display = "none";
+    }
+}
+
+
+$(document).ready(function () {
+    //************* S2 planning start, grouping table  ********* //
+    var groupColumn = 0;
+    var table1 = $('#hocamoseS2GroupingTableBreakfast').DataTable({
+        "columnDefs": [
+            {orderable: false, targets: [1]},
+            {orderable: false, targets: [2]},
+            {orderable: false, targets: [3]},
+            {orderable: false, targets: [4]},
+            {"visible": false,
+                "targets": groupColumn,
+            }
+        ],
+
+        "displayLength": 25,
+//          "ordering": false,
+        "order": [[groupColumn, 'desc']],
+        "drawCallback": function (settings) {
+            var api = this.api();
+            var rows = api.rows({page: 'current'}).nodes();
+            var last = null;
+
+            api.column(groupColumn, {page: 'current'}).data().each(function (group, i) {
+                if (last !== group) {
+                    $(rows).eq(i).before(
+                            '<tr class="group"><td colspan="7">' + group + '</td></tr>'
+                            );
+
+                    last = group;
+                }
+            });
+        }
+    });
+
+
+    //********** s2 planning ends , grouping table*************************//
+    //************* S2 planning start, grouping table  ********* //
+    var groupColumn = 0;
+    var table2 = $('#hocamoseS2GroupingTableLunch').DataTable({
+        "columnDefs": [
+            {orderable: false, targets: [1]},
+            {orderable: false, targets: [2]},
+            {orderable: false, targets: [3]},
+            {orderable: false, targets: [4]},
+            {"visible": false,
+                "targets": groupColumn,
+
+            }
+
+        ],
+        "order": [[groupColumn, 'desc']],
+        "displayLength": 25,
+        "drawCallback": function (settings) {
+            var api = this.api();
+            var rows = api.rows({page: 'current'}).nodes();
+            var last = null;
+
+            api.column(groupColumn, {page: 'current'}).data().each(function (group, i) {
+                if (last !== group) {
+                    $(rows).eq(i).before(
+                            '<tr class="group"><td colspan="7">' + group + '</td></tr>'
+                            );
+
+                    last = group;
+                }
+            });
+        }
+    });
+
+    //********** s2 planning ends , grouping table*************************//
+    //************* S2 planning start, grouping table  ********* //
+    var groupColumn = 0;
+    var table3 = $('#hocamoseS2GroupingTableDinner').DataTable({
+        "columnDefs": [
+            {orderable: false, targets: [1]},
+            {orderable: false, targets: [2]},
+            {orderable: false, targets: [3]},
+            {orderable: false, targets: [4]},
+            {"visible": false,
+                "targets": groupColumn,
+
+            }
+        ],
+        "order": [[groupColumn, 'desc']],
+        "displayLength": 25,
+        "drawCallback": function (settings) {
+            var api = this.api();
+            var rows = api.rows({page: 'current'}).nodes();
+            var last = null;
+
+            api.column(groupColumn, {page: 'current'}).data().each(function (group, i) {
+                if (last !== group) {
+                    $(rows).eq(i).before(
+                            '<tr class="group"><td colspan="7">' + group + '</td></tr>'
+                            );
+
+                    last = group;
+                }
+            });
+        }
+    });
+
+//  
+    //********** s2 planning ends , grouping table*************************//
+    //************* S2 planning start, grouping table  ********* //
+    var groupColumn = 0;
+    var table4 = $('#hocamoseS2GroupingTableSnacks').DataTable({
+        "columnDefs": [
+            {orderable: false, targets: [1]},
+            {orderable: false, targets: [2]},
+            {orderable: false, targets: [3]},
+            {orderable: false, targets: [4]},
+            {"visible": false,
+                "targets": groupColumn,
+
+            }
+        ],
+        "order": [[groupColumn, 'desc']],
+        "displayLength": 25,
+        "drawCallback": function (settings) {
+            var api = this.api();
+            var rows = api.rows({page: 'current'}).nodes();
+            var last = null;
+
+            api.column(groupColumn, {page: 'current'}).data().each(function (group, i) {
+                if (last !== group) {
+                    $(rows).eq(i).before(
+                            '<tr class="group"><td colspan="7">' + group + '</td></tr>'
+                            );
+
+                    last = group;
+                }
+            });
+        }
+    });
+
+
+    //********** s2 planning ends , grouping table*************************//
+    
+    
+     // Breakfast print table
+    var groupColumn = 0;
+    var table5 = $('#Breakfast_mealplanningprinttbl').DataTable({
+        "columnDefs": [
+            {orderable: false, targets: [1]},
+            {orderable: false, targets: [2]},
+            {orderable: false, targets: [3]},
+//             {orderable: false, targets: [4]},
+            {"visible": false,
+                "targets": groupColumn,
+
+            }
+        ],
+        "searching": false,
+        "paging": false, 
+        "info": false,
+        "order": [[groupColumn, 'desc']],
+        "displayLength": 25,
+        "drawCallback": function (settings) {
+            var api = this.api();
+            var rows = api.rows({page: 'current'}).nodes();
+            var last = null;
+
+            api.column(groupColumn, {page: 'current'}).data().each(function (group, i) {
+                if (last !== group) {
+                    $(rows).eq(i).before(
+                            '<tr class="group"><td colspan="7">' + group + '</td></tr>'
+                            );
+
+                    last = group;
+                }
+            });
+        }
+    });
+      // Lunch print table
+    var groupColumn = 0;
+    var table6 = $('#Lunch_mealplanningprinttbl').DataTable({
+        "columnDefs": [
+            {orderable: false, targets: [1]},
+            {orderable: false, targets: [2]},
+            {orderable: false, targets: [3]},
+//             {orderable: false, targets: [4]},
+            {"visible": false,
+                "targets": groupColumn,
+
+            }
+        ],
+        "searching": false,
+        "paging": false, 
+        "info": false,
+        "order": [[groupColumn, 'desc']],
+        "displayLength": 25,
+        "drawCallback": function (settings) {
+            var api = this.api();
+            var rows = api.rows({page: 'current'}).nodes();
+            var last = null;
+
+            api.column(groupColumn, {page: 'current'}).data().each(function (group, i) {
+                if (last !== group) {
+                    $(rows).eq(i).before(
+                            '<tr class="group"><td colspan="7">' + group + '</td></tr>'
+                            );
+
+                    last = group;
+                }
+            });
+        }
+    });
+    
+     // Dinner print table
+    var groupColumn = 0;
+    var table7 = $('#Dinner_mealplanningprinttbl').DataTable({
+        "columnDefs": [
+            {orderable: false, targets: [1]},
+            {orderable: false, targets: [2]},
+            {orderable: false, targets: [3]},
+//             {orderable: false, targets: [4]},
+            {"visible": false,
+                "targets": groupColumn,
+
+            }
+        ],
+        "searching": false,
+        "paging": false, 
+        "info": false,
+        "order": [[groupColumn, 'desc']],
+        "displayLength": 25,
+        "drawCallback": function (settings) {
+            var api = this.api();
+            var rows = api.rows({page: 'current'}).nodes();
+            var last = null;
+
+            api.column(groupColumn, {page: 'current'}).data().each(function (group, i) {
+                if (last !== group) {
+                    $(rows).eq(i).before(
+                            '<tr class="group"><td colspan="7">' + group + '</td></tr>'
+                            );
+
+                    last = group;
+                }
+            });
+        }
+    });
+     // Snacks print table
+    var groupColumn = 0;
+    var table8 = $('#Snacks_mealplanningprinttbl').DataTable({
+        "columnDefs": [
+            {orderable: false, targets: [1]},
+            {orderable: false, targets: [2]},
+            {orderable: false, targets: [3]},
+//             {orderable: false, targets: [4]},
+            {"visible": false,
+                "targets": groupColumn,
+
+            }
+        ],
+        "searching": false,
+        "paging": false, 
+        "info": false,
+        "order": [[groupColumn, 'desc']],
+        "displayLength": 25,
+        "drawCallback": function (settings) {
+            var api = this.api();
+            var rows = api.rows({page: 'current'}).nodes();
+            var last = null;
+
+            api.column(groupColumn, {page: 'current'}).data().each(function (group, i) {
+                if (last !== group) {
+                    $(rows).eq(i).before(
+                            '<tr class="group"><td colspan="7">' + group + '</td></tr>'
+                            );
+
+                    last = group;
+                }
+            });
+        }
+    });
+    
+    
+});
+
+
+        function Print_meal_planning() {
+            //    window.print();
+            //Get the HTML of div
+            var divElements = document.getElementById("print_planning").innerHTML;
+            //var x = document.getElementByTagName("Title")[0];
+           // x = "ABC";
+           var name = document.getElementById("userPrintName").innerHTML;
+           var day = document.getElementById("PrintDay").innerHTML;
+           var date = document.getElementById("PrintDate").innerHTML;
+           document.title = name+" "+day+" "+date;
+           
+
+            //Get the HTML of whole page
+            var oldPage = document.body.innerHTML;
+
+            var html = "<html><title>" + document.title + "</title><body>" + divElements + "</body>";
+            document.body.innerHTML = html;
+
+            //Print Page
+            window.print();
+
+            //Restore orignal HTML
+            document.title = "HOCAMOSE";
+            document.body.innerHTML = oldPage;
+
+
+        }

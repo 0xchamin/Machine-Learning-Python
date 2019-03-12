@@ -1,0 +1,109 @@
+/**
+ * Created by bjayamanna on 11/23/2017.
+ */
+
+function addConfiguration() {
+    $(".RehabConfig:first").clone().appendTo(".create-exercise-form").hide().fadeIn(1000);
+}
+
+function removeRehabConfiguration(event) {
+    if (($('.RehabConfig').length) > 1) {
+        $(event.target).parents('.RehabConfig').fadeOut("normal", function () {
+            $(this).remove();
+        });
+    }
+}
+
+function removeCurrConfiguration(event) {
+    // if (($('.currentConfig').length) > 1) {
+    $(event.target).parents('.currentConfig').fadeOut("normal", function () {
+        $(this).remove();
+    });
+    //}
+}
+
+function submit() {
+    var configNames = [];
+    var configEasyVals = [];
+    var configNormalVals = [];
+    var configHardVals = [];
+
+    var config_selection = '';
+
+    $(".config-name").each(function (index) {
+        //if ($(this).val() != 'None') {
+            configNames.push($(this).val());
+        //}
+    });
+
+    $(".config-easy").each(function (index) {
+        configEasyVals.push($(this).val());
+    });
+
+
+    $(".config-normal").each(function (index) {
+        configNormalVals.push($(this).val());
+    });
+
+
+    $(".config-hard").each(function (index) {
+        configHardVals.push($(this).val());
+    });
+
+
+    $(".config-name-current-id").each(function (index) {
+        config_selection = $(this).text();
+        configNames.push(config_selection);
+    });
+
+    $(".config-easy-current").each(function (index) {
+        configEasyVals.push($(this).val());
+    });
+
+
+    $(".config-normal-current").each(function (index) {
+        configNormalVals.push($(this).val());
+    });
+
+
+    $(".config-hard-current").each(function (index) {
+        configHardVals.push($(this).val());
+    });
+
+    var configNamesInput = $("<input>")
+            .attr("type", "hidden")
+            .attr("name", "configNames").val(JSON.stringify(configNames));
+
+
+    var configEasyInput = $("<input>")
+            .attr("type", "hidden")
+            .attr("name", "configEasy").val(JSON.stringify(configEasyVals));
+
+    var configNormalInput = $("<input>")
+            .attr("type", "hidden")
+            .attr("name", "configNormal").val(JSON.stringify(configNormalVals));
+
+    var configHardInput = $("<input>")
+            .attr("type", "hidden")
+            .attr("name", "configHard").val(JSON.stringify(configHardVals));
+
+
+    $('#exercise_form').append($(configNamesInput));
+    $('#exercise_form').append($(configEasyInput));
+    $('#exercise_form').append($(configNormalInput));
+    $('#exercise_form').append($(configHardInput));
+    $('#exercise_form').submit();
+}
+
+$(document).on("click", ".ex-delete-button", function () {
+    var exId = $(this).data('id');
+
+    //$("#delete-link").attr( "href", "/rehab/delete_exercise/"+exId );
+    $("#delete-link").attr("href", exId);
+})
+
+$(document).on("click", ".plan-delete-button", function () {
+    var exId = $(this).data('id');
+    //$("#delete-link").attr( "href", "/rehab/delete_plans/"+exId );
+    $("#delete-link").attr("href", exId);
+})

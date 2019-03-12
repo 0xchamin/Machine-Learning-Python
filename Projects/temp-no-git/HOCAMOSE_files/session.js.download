@@ -1,0 +1,71 @@
+//    $(document).ready(function () {
+//        $("#0nDateRangeFitnessGame").hide();
+//        $("#offDateRangeFitnessGame").show();
+//    });
+
+//    $("#offDateRangeFitnessGameBtn").click(function () {
+//        $("#0nDateRangeFitnessGame").show();
+//        $("#offDateRangeFitnessGame").hide();
+//       
+//    });
+//
+//    $("#onDateRangeFitnessGameBtn").click(function () {
+//        $("#offDateRangeFitnessGame").show();
+//        $("#0nDateRangeFitnessGame").hide();
+//        
+//    });
+    
+    $('.FitnessGameClearIcon').click(function(){
+    $('#FitnessSessionDate').val(" ");
+    $('#FitnessSessionDate').text(" ");
+//    $('#FitnessSessionFrom2').val("");
+//    $('#FitnessSessionFrom2').text("");
+//     $('#FitnessSessionTo').val("");
+//    $('#FitnessSessionTo').text("");
+});
+
+
+/**
+ * Created by bjayamanna on 1/24/2018.
+ */
+/***$( "#send-session" ).click(function( event ) {
+
+    var clientName = $( "input[name='client-name']" ).val();
+    var QRId = $(".qr-code").val();
+    var pcIp = $(".pc-ip").val();
+    var exercises = [];
+    var exercise = [];
+
+    $( ".exercise" ).each(function( index ) {
+        exercise['name'] = $( this ).find( ".exercise-name" ).text();
+        $( this ).find( ".exercise-configs" ).each(function( index ) {
+            exercise['configs'] = [];
+            $( this ).find( ".config" ).each(function( index ) {
+                exercise['configs'][ "'"+$( this ).find( ".config-name" ).text()+"'" ] = $( this ).find( ".config-value" ).text();
+            });
+            exercises.push(exercise);
+            exercise = [];
+        });
+    });
+
+    // Stop form from submitting normally
+    event.preventDefault();
+
+    var data = {
+        name: clientName,
+        qrcode: QRId,
+        exercises: exercises
+    }
+
+    $.ajax({
+        url: 'http://localhost:8080/rehab-micro-service/public/rt/mock',
+        type: 'post',
+        dataType: 'json',
+        contentType: "application/json",
+        success: function (data) {
+            $( ".panel-footer" ).empty().append( "<div class='alert alert-success' role='alert'>Data Sent</div>" );
+        },
+        data: JSON.stringify(data)
+    });
+
+});**/

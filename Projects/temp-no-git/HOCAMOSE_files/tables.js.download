@@ -1,0 +1,15 @@
+/**
+ * Created by bjayamanna on 12/27/2017.
+ */
+$(document).ready(function() {
+
+
+    var t = $('#schedule-list').DataTable();
+
+    var t1 = $('#all-clients-list').DataTable();
+
+    var t2 = $('#client-table').DataTable();
+
+
+
+});

@@ -1,0 +1,14 @@
+/**
+ * Created by chaminn on 5/24/2018.
+ */
+    if($("input[name=duration-1]").val() == "monthly-1"){
+        $('#feedback_info').hide();
+    }else{
+        $('#feedback_info').show();
+    }
+    function show_div() {
+        $('#feedback_info').show();
+    }
+    function hide_div(){
+        $('#feedback_info').hide();
+    }

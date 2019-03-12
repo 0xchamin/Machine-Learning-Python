@@ -1,0 +1,123 @@
+///**
+// * Created by bjayamanna on 12/5/2017.
+// */
+//$(function() {
+//    // there's the gallery and the transfer
+//    var $gallery = $( "#gallery" ),
+//        $transfer = $( "#transfer" ),
+//        $gen_dialog = $( '#gen_dialog' );
+//
+//    // let the gallery items be draggable
+//    $( "li", $gallery ).draggable({
+//        cancel: "a.ui-icon", // clicking an icon won't initiate dragging
+//        revert: "invalid", // when not dropped, the item will revert back to its initial position
+//        containment: "document",
+//        helper: "clone",
+//        cursor: "move"
+//    });
+//
+//    // let the transfer be droppable, accepting the gallery items
+//    $transfer.droppable({
+//        accept: "#gallery > li",
+//        activeClass: "widget-content",
+//        drop: function( event, ui ) {
+//            deleteImage( ui.draggable );
+//        }
+//    });
+//
+//    // let the gallery be droppable as well, accepting items from the transfer
+//    $gallery.droppable({
+//        accept: "#transfer li",
+//        activeClass: "custom-state-active",
+//        drop: function( event, ui ) {
+//            recycleImage( ui.draggable );
+//        }
+//    });
+//
+//    // set up the generate button's dialog box
+//    $gen_dialog.dialog({
+//        autoOpen:false,
+//        height:140,
+//        'title': 'Generated Report',
+//        modal:true
+//    });
+//
+//    // function for generating info of icon/s in drop box
+//    $('button.generate').click(function() {
+//        var content = $('ul li h5', $transfer).map(function(i, v) {
+//            return $(this).text();
+//        }).get();
+//        $gen_dialog.find('.diag-content').html(content.join(', ')).end().dialog('open');
+//    });
+//    //function for resetting the icons back to original positions
+//    $('button.reset').click(function() {
+//        $('ul li', $transfer).each(function() {
+//            recycleImage($(this));
+//        });
+//    });
+//
+//    toggleButtons();
+//
+//    // image deletion function
+//    var recycle_icon = "<a href='link/to/recycle/script/when/we/have/js/off' title='Transfer this icon back' class='ui-icon ui-icon-transfer-e-w'>Transfer this icon back</a>";
+//    function deleteImage( $item ) {
+//        $item.fadeOut(function() {
+//            var $list = $( "ul", $transfer ).length ?
+//                $( "ul", $transfer ) :
+//                $( "<ul class='gallery ui-helper-reset'/>" ).appendTo( $transfer );
+//
+//            $item.find( "a.ui-icon-transferthick-e-w" ).remove();
+//            $item.append( recycle_icon ).appendTo( $list ).fadeIn(function() {
+//                $item
+//                    .animate({ width: "200px" })
+//                    .find( "img" )
+//                    .animate({ height: "150px" }, function() {
+//                        toggleButtons();
+//                    });
+//            });
+//        });
+//    }
+//
+//    // image recycle function
+//    var transfer_icon = "<a href='link/to/transfer/script/when/we/have/js/off' title='Transfer Across' class='ui-icon ui-icon-transferthick-e-w'>Transfer Across</a>";
+//    function recycleImage( $item ) {
+//        $item.fadeOut(function() {
+//            $item
+//                .find( "a.ui-icon-transfer-e-w" )
+//                .remove()
+//                .end()
+//                .css( "width", "200px")
+//                .append( transfer_icon )
+//                .find( "img" )
+//                .css( "height", "72px" )
+//                .end()
+//                .appendTo( $gallery )
+//                .fadeIn(function() {
+//                    toggleButtons();
+//                });
+//        });
+//    }
+//    // display buttons when icon transferred across
+//    function toggleButtons() {
+//        $('div.col3 button').toggle($('> ul > li', $transfer).length > 0);
+//    }
+//
+//
+//    // resolve the icons behavior with event delegation
+//    $( "ul.gallery > li" ).click(function( event ) {
+//        var $item = $( this ),
+//            $target = $( event.target );
+//
+//        if ( $target.is( "a.ui-icon-transferthick-e-w" ) ) {
+//            deleteImage( $item );
+//        } else if ( $target.is( "a.ui-icon-transfer-e-w" ) ) {
+//            recycleImage( $item );
+//        }
+//
+//        return false;
+//    });
+//});
+//
+//$('.ui-widget-content input').click(function() {
+//    $(this).focus();
+//});

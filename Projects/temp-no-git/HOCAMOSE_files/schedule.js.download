@@ -1,0 +1,190 @@
+/**
+ * Created by bjayamanna on 12/26/2017.
+ */
+
+var oTable = $('#all-clients-list').dataTable({
+    stateSave: true
+});
+
+var allPages = oTable.fnGetNodes();
+
+
+var clientIds = [];
+var startsOn;
+var isEnd = "";
+var endsOn = "";
+var days = [];
+
+$("#recurrence").change(function () {
+
+    if (this.checked) {
+        $('#repeatPop').modal('show');
+//        $("input[name=selectDate]").val("");
+        $("input[name=selectDate]").attr("disabled", true);
+
+    } else {
+        $("input[name=selectDate]").attr("disabled", false);
+        //$('.repeat-data').hide();
+
+    }
+});
+function showEditRecrussion() {
+ $('#repeatPop').modal('show');
+}
+
+function closePop() {
+    $("#recurrence").attr('checked', false);
+    $("#recurrence").parent().removeClass("checked");
+    var atLeastOneIsChecked = $('input[name="days[]"]:checked').length > 0;
+    if (!atLeastOneIsChecked) {
+        $("input[name=selectDate]").attr("disabled", false);
+    } else {
+        $("input[name=selectDate]").attr("disabled", true);
+        
+    }
+}
+
+$("input[name=endDateRadioBtn]").change(function () {
+
+    if (this.value === "true") {
+        $("input[name=endDate]").show();
+    } else {
+        $("input[name=endDate]").hide();
+    }
+
+});
+
+
+function saveRecurrenceData() {
+
+    $(".popupAlerts").remove();
+
+    var atLeastOneIsChecked = $('input[name="days[]"]:checked').length > 0;
+
+     days = [];
+
+    $('input[name="days[]"]:checked').map(function () {
+        days.push($(this).val());
+    });
+
+     startsOn = $("#startsOn").val();
+     isEnd = $("input[name=endDateRadioBtn]:checked").val();
+     endsOn = $("input[name=endDate]").val();
+    if (atLeastOneIsChecked && startsOn && (isEnd||endsOn) ) {
+$("#selectDateVal").val("");
+    }
+    if (!atLeastOneIsChecked) {
+        $("#daysRow").append("<div class='popupAlerts alert alert-danger' role='alert'>Select at least one day.</div>");
+        return;
+    }
+    if (!startsOn) {
+        $("#startsOnDiv").append("<div class='popupAlerts alert alert-danger' role='alert'>This field is required.</div>");
+        return;
+    }
+    if (!isEnd) {
+        $("#endDateRadioBtnDiv").append("<div class='popupAlerts alert alert-danger' role='alert'>This field is required.</div>");
+        return;
+    }
+    if (isEnd == "true" && endsOn == "") {
+        $("#endDateRadioBtnDiv").append("<div class='popupAlerts alert alert-danger' role='alert'>Date field is required.</div>");
+        return;
+    }
+    if (isEnd == "true" && (new Date(endsOn) < new Date(startsOn))) {
+        $("#endDateRadioBtnDiv").append("<div class='popupAlerts alert alert-danger' role='alert'>endDate < startDate</div>");
+        return;
+    }
+
+    appendandShowRepeatData();
+
+    $('#repeatPop').modal('hide');
+
+}
+
+function appendandShowRepeatData() {
+
+    var daysToBeShown = "";
+
+    for (var i in days) {
+        daysToBeShown += days[i] + ", ";
+    }
+
+    $('.repeat-data .days span').empty().append(daysToBeShown);
+    $('.repeat-data .starOn span').empty().append(startsOn);
+
+    if (isEnd == "false") {
+        $('.repeat-data .endsOn span').empty().append("Never");
+    } else {
+        $('.repeat-data .endsOn span').empty().append(endsOn);
+    }
+
+    $('.repeat-data').show();
+}
+function AllUser_Remove() {
+    $('#allUserCheck', allPages).prop('checked', false);
+}
+function AllUser_add() {
+
+    $('input[type="checkbox"]', allPages).prop('checked', false);
+    $('#allUserCheck', allPages).prop('checked', true);
+    //document.getElementById("allUserCheck").checked = true;
+}
+function addClients() {
+
+    var clients = $("[name^='clients']:checked", allPages);
+    var t2 = $('#client-table').DataTable();
+    t2
+            .clear()
+            .draw();
+
+    clients.each(function () {
+        var tableData = JSON.parse($(this).val().trim());
+
+        var id = tableData["id"];
+
+        var rowNode = t2
+                .row.add([tableData.id, tableData.name, tableData.age, tableData.gender, tableData.address])
+                .draw()
+                .node();
+
+        $(rowNode)
+                .css('color', 'red')
+                .animate({color: 'blue'});
+
+        clientIds.push(tableData.id);
+
+    });
+
+    $('#addClientsModal').modal('hide')
+
+}
+
+function saveSchedule() {
+
+    var clientIdsInput = $("<input>")
+            .attr("type", "hidden")
+            .attr("name", "clientIds").val(JSON.stringify(clientIds));
+
+    if (days.length == 0) {
+        days = null;
+    }
+
+    if ($("#recurrence").is(':checked')) {
+        var recurrenceDataInput = $("<input>")
+                .attr("type", "hidden")
+                .attr("name", "recurrenceData").val(JSON.stringify({
+            "days": days,
+            "startsOn": startsOn,
+            "isEnd": isEnd,
+            "endsOn": endsOn
+        }));
+    }
+
+    $('#create_schedule_form').append($(clientIdsInput));
+    $('#create_schedule_form').append($(recurrenceDataInput));
+
+    $('#create_schedule_form').submit();
+}
+
+$(document).ready(function () {
+    $('[data-toggle="popover"]').popover();
+});
